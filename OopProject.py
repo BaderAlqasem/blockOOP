@@ -86,7 +86,7 @@ class Game:
         self.display = pygame.display.set_mode((1000, 600))
         self.Player = Player(self.display)
         self.food = Food(self.display)
-        self.obstacle = Obstacle(self.display)
+        self.obstacles = Obstacle(self.display)
         
     def blocksCollide(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + 20 and y1 >= y2 and y1 < y2 + 20:
@@ -115,12 +115,12 @@ class Game:
         self.food.draw()
         # self.obstacle.draw()
         self.display_score()
-        self.gameOver()
+        # self.gameOver()
         self.obstacles = []
 
         for _ in range(50):
             self.obstacles.append(Obstacle(self.display))
-            self.obstacle.draw()
+            self.obstacles.draw()
 
         if self.blocksCollide(self.Player.x, self.Player.y, self.food.x, self.food.y):
             self.food.move()
