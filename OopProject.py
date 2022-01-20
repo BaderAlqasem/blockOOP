@@ -117,14 +117,11 @@ class Game:
     def play(self):
         self.Player.move()
         self.food.draw()
-        # self.obstacle.draw()
         self.display_score()
         self.gameOver()
-        
 
-        for obstacles in self.obstacles:
-            self.obstacle.draw()
-            
+        for obstacle in self.obstacles:
+            obstacle.draw()
 
         if self.blocksCollide(self.Player.x, self.Player.y, self.food.x, self.food.y):
             self.food.move()
