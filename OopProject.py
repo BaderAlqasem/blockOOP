@@ -1,7 +1,6 @@
 import pygame
 import random
 import sys
-from threading import Timer
 
 #Image stuff
 screenHeight = 600
@@ -30,7 +29,6 @@ class Food:
     def move(self):
         self.x = random.randint(1,25)* 20
         self.y = random.randint(1,20)* 20
-        print("moving")
 
 class Obstacle:
     def __init__(self, screen):
@@ -42,7 +40,6 @@ class Obstacle:
 
     def draw(self):
         self.screen.blit(self.image, (self.x, self.y))
-
 
 class Player:
     #Player is self
@@ -68,13 +65,13 @@ class Player:
     #Player Speed
     def move(self):
         if self.direction == "left":
-            self.x -= 5
+            self.x -=5
         if self.direction == "right":
-            self.x += 5
+            self.x +=5
         if self.direction == "up":
-            self.y -= 5
+            self.y -=5
         if self.direction == "down":
-            self.y += 5
+            self.y +=5
 
         self.draw()
 
@@ -91,9 +88,10 @@ class Game:
         self.food = Food(self.display)
         self.obstacle = Obstacle(self.display)
         self.obstacles = []
+        self.score = 0
 
-        # for _ in range(40):
-        #     self.obstacles.append(Obstacle(self.display))
+        for _ in range(40):
+            self.obstacles.append(Obstacle(self.display))
 
     def blocksCollide(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 <= x2 + 20 and y1 >= y2 and y1 <= y2 + 20:
@@ -101,15 +99,13 @@ class Game:
         return False
 
     def display_score(self):
-        score = 0
-
         if self.blocksCollide(self.Player.x, self.Player.y, self.food.x, self.food.y):
-            score +=1
-            print(score)
+            self.score +=1
+            print(self.score)
             self.food.move()
 
         font = pygame.font.SysFont("arial",30)
-        score = font.render(f"Score: {score}",True,(200,200,200))
+        score = font.render(f"Score: {self.score}",True,(200,200,200))
         self.display.blit(score,(850,10))
 
     def gameOver(self):
