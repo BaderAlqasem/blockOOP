@@ -68,13 +68,13 @@ class Player:
     #Player Speed
     def move(self):
         if self.direction == "left":
-            self.x -= 2.5
+            self.x -= 5
         if self.direction == "right":
-            self.x += 2.5
+            self.x += 5
         if self.direction == "up":
-            self.y -= 2.5
+            self.y -= 5
         if self.direction == "down":
-            self.y += 2.5
+            self.y += 5
 
         self.draw()
 
