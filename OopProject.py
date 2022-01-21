@@ -90,11 +90,13 @@ class Game:
         self.obstacles = []
         self.score = 0
 
+        #Comment this out so that the one obstacle block with collision 
+        # detection shows up instead of the 40 without the collision detection.
         for _ in range(40):
             self.obstacles.append(Obstacle(self.display))
 
     def blocksCollide(self, x1, y1, x2, y2):
-        if x1 >= x2 and x1 <= x2 + 20 and y1 >= y2 and y1 <= y2 + 20:
+        if x1 >= x2 and x1 < x2 + 20 and y1 >= y2 and y1 < y2 + 20:
             return True
         return False
 
@@ -104,7 +106,7 @@ class Game:
             print(self.score)
             self.food.move()
 
-        font = pygame.font.SysFont("arial",30)
+        font = pygame.font.SysFont("comic sans",30)
         score = font.render(f"Score: {self.score}",True,(200,200,200))
         self.display.blit(score,(850,10))
 
